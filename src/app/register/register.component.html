@@ -1,0 +1,57 @@
+<mat-card>
+    <mat-card-title>Register</mat-card-title>
+    <mat-card-content>
+<form [formGroup]="registerForm">
+        <mat-form-field>
+    <div class="form-group">
+        <input type="text" formControlName="firstName" matInput placeholder="firstName" #firstName class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+        <div *ngIf="submitted && firstName.errors" class="invalid-feedback">
+            <div *ngIf="firstName.errors.required">First Name is required</div>
+        </div>
+    </div>
+    </mat-form-field>
+    <mat-form-field> 
+    <div class="form-group">
+        <input type="text" formControlName="lastName" matInput placeholder="lastName" #lastName class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+        </div>
+    </div>
+</mat-form-field> 
+<mat-form-field> 
+    <div class="form-group">
+        <input type="text" formControlName="username" matInput placeholder="username" #username class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+    </div>
+</mat-form-field> 
+<mat-form-field> 
+    <div class="form-group">
+        <input type="password" formControlName="password" matInput placeholder="password" #password class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+    </div>
+</mat-form-field>
+<mat-form-field> 
+    <div class="form-group">
+        <mat-label>Role</mat-label>
+        <select matNativeControl required formControlName="roles" class="form-control" #roles>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+        </select>
+        <div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+            <div *ngIf="f.roles.errors.required">Role is required</div>
+        </div>
+    </div>
+</mat-form-field> 
+    <div class="form-group">
+        <button mat-button (click)="adduser(firstName.value,lastName.value, username.value, password.value,roles.value)">Register</button>
+        <a routerLink="/login" mat-button>Cancel</a>
+        <!-- <button (click)="userlist()" mat-button>UserList</button> -->
+    </div>
+</form>
+</mat-card-content>
+</mat-card>
